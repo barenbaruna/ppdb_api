@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ppdb_api
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/ppdb_api
+    depends_on:
+      - db
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=ppdb
